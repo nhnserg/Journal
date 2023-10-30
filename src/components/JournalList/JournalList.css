@@ -1,5 +1,4 @@
-.left-panel {
-	min-width: 400px;
+.journal-list {
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
