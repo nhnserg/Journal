@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import Body from "./layouts/Body/Body";
+import Leftpanel from "./layouts/LeftPanel/LeftPanel";
+import Header from "./сomponents/Header/Header";
+import JournalAddButton from "./сomponents/JournalAddButton/JournalAddButton";
+import JournalForm from "./сomponents/JournalForm/JournalForm";
+import JournalList from "./сomponents/JournalList/JournalList";
+import { useLocalStorage } from './hooks/use-localstorage.hook'
+import { UserContextProvidev } from "./context/user.context";
 
+function mapItems(items) {
+  if (!items) {
+    return [];
+  }
+  return items.map(i => ({
+    ...i, date: new Date(i.date)
+  }));
+
+}
 function App() {
-  const [count, setCount] = useState(0)
+  const [items, setItems] = useLocalStorage('data');
+  const [selectedItem, setSelectedItem] = useState(null);
+  console.log('App');
+
+  const addItem = (item) => {
+    if (!item.id) {
+      setItems([...mapItems(items), {
+        ...item,
+        date: new Date(item.date),
+        id: items.length > 0 ? Math.max(...items.map(i => i.id)) : 1
+      }]);
+    } else {
+      setItems([...mapItems(items).map(i => {
+        if (i.id === item.id) {
+          return {
+            ...item
+          };
+        }
+        return i;
+      })]);
+    }
+  };
+  const deleteItem = (id) => {
+    setItems([...items.filter(i => i.id !== id)]);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <UserContextProvidev>
+      <div className='app'>
+        <LeftPanel>
+          <Header />
+          <JournalAddButton clearForm={() => setSelectedItem(null)} />
+          <JournalList items={mapItems(items)} setItem={setSelectedItem} />
+        </LeftPanel>
+        <Body>
+          <JournalForm onSubmit={addItem} onDelete={deleteItem} data={selectedItem} />
+        </Body>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </UserContextProvidev>
+  );
 }
 
-export default App
+export default App;
