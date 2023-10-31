@@ -9,6 +9,7 @@
   align-items: center;
   gap: 20px;
   min-width: 150px;
+  color: white;
 }
 
 .form-row {
@@ -17,13 +18,14 @@
 }
 
 .input {
+  color: white;
   border: none;
   background: none;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  font-family: "Source Sans 3", sans-serif;
+  font-family: 'Source Sans 3', sans-serif;
   border-bottom: 1px solid #323232;
   width: 100%;
 }

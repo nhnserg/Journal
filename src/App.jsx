@@ -6,7 +6,7 @@ import JournalList from './components/JournalList/JournalList';
 import Body from './layouts/Body/Body';
 import LeftPanel from './layouts/LeftPanel/LeftPanel';
 import { useLocalStorage } from './hooks/use-localstorage.hook';
-import { UserContextProvidev } from './context/user.context';
+import { UserContextProvider } from './context/user.context';
 import { useState } from 'react';
 
 function mapItems(items) {
@@ -48,18 +48,18 @@ function App() {
 	};
 
 	return (
-		<UserContextProvidev>
+		<UserContextProvider>
 			<div className='app'>
 				<LeftPanel>
-					<Header/>
-					<JournalAddButton clearForm={() => setSelectedItem(null)}/>
+					<Header />
+					<JournalAddButton clearForm={() => setSelectedItem(null)} />
 					<JournalList items={mapItems(items)} setItem={setSelectedItem} />
 				</LeftPanel>
 				<Body>
-					<JournalForm onSubmit={addItem} onDelete={deleteItem} data={selectedItem}/>
+					<JournalForm onSubmit={addItem} onDelete={deleteItem} data={selectedItem} />
 				</Body>
 			</div>
-		</UserContextProvidev>
+		</UserContextProvider>
 	);
 }
 
