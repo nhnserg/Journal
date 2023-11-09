@@ -25,7 +25,7 @@ function App() {
 	console.log('App');
 
 	const addItem = item => {
-		if (!item.id) {
+		if (item.id) {
 			setItems(prevItems => [
 				...mapItems(prevItems),
 				{
