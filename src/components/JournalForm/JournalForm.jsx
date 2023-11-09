@@ -15,25 +15,25 @@ function JournalForm({ onSubmit, data, onDelete }) {
 	const { userId } = useContext(UserContext);
 
 	const focusError = (isValid) => {
-		switch (true) {
-			case !isValid.title:
-				titleRef.current.focus();
-				break;
-			case !isValid.date:
-				dateRef.current.focus();
-				break;
-			case !isValid.post:
-				postRef.current.focus();
-				break;
+		switch(true) {
+		case !isValid.title:
+			titleRef.current.focus();
+			break;
+		case !isValid.date:
+			dateRef.current.focus();
+			break;
+		case !isValid.post:
+			postRef.current.focus();
+			break;
 		}
 	};
 
 	useEffect(() => {
 		if (!data) {
 			dispatchForm({ type: 'CLEAR' });
-			dispatchForm({ type: 'SET_VALUE', payload: { userId } });
+			dispatchForm({ type: 'SET_VALUE', payload: { userId }});
 		}
-		dispatchForm({ type: 'SET_VALUE', payload: { ...data } });
+		dispatchForm({ type: 'SET_VALUE', payload: { ...data }});
 	}, [data]);
 
 	useEffect(() => {
@@ -53,16 +53,16 @@ function JournalForm({ onSubmit, data, onDelete }) {
 		if (isFormReadyToSubmit) {
 			onSubmit(values);
 			dispatchForm({ type: 'CLEAR' });
-			dispatchForm({ type: 'SET_VALUE', payload: { userId } });
+			dispatchForm({ type: 'SET_VALUE', payload: { userId }});
 		}
 	}, [isFormReadyToSubmit, values, onSubmit, userId]);
 
 	useEffect(() => {
-		dispatchForm({ type: 'SET_VALUE', payload: { userId } });
+		dispatchForm({ type: 'SET_VALUE', payload: { userId }});
 	}, [userId]);
 
 	const onChange = (e) => {
-		dispatchForm({ type: 'SET_VALUE', payload: { [e.target.name]: e.target.value } });
+		dispatchForm({ type: 'SET_VALUE', payload: { [e.target.name]: e.target.value }});
 	};
 
 	const addJournalItem = (e) => {
@@ -73,27 +73,27 @@ function JournalForm({ onSubmit, data, onDelete }) {
 	const deleteJournalItem = () => {
 		onDelete(data.id);
 		dispatchForm({ type: 'CLEAR' });
-		dispatchForm({ type: 'SET_VALUE', payload: { userId } });
+		dispatchForm({ type: 'SET_VALUE', payload: { userId }});
 	};
 
 	return (
 		<form className={styles['journal-form']} onSubmit={addJournalItem}>
 			<div className={styles['form-row']}>
-				<Input appearence="title" type='text' ref={titleRef} onChange={onChange} value={values.title} name='title' isValid={!isValid.title} />
+				<Input appearence="title" type='text' ref={titleRef} onChange={onChange} value={values.title} name='title' isValid={!isValid.title}/>
 				{data?.id && <button className={styles['delete']} type="button" onClick={deleteJournalItem}>
-					<img src="./archive.svg" alt="Кнопка удалить" />
+					<img src="/archive.svg" alt="Кнопка удалить" />
 				</button>}
 			</div>
 			<div className={styles['form-row']}>
 				<label htmlFor="date" className={styles['form-label']}>
-					<img src='./calendar.svg' alt='Иконка календаря' />
+					<img src='/calendar.svg' alt='Иконка календаря'/>
 					<span>Дата</span>
 				</label>
-				<Input type='date' ref={dateRef} onChange={onChange} name='date' value={values.date ? new Date(values.date).toISOString().slice(0, 10) : ''} id="date" isValid={!isValid.title} />
+				<Input type='date' ref={dateRef} onChange={onChange} name='date' value={values.date ? new Date(values.date).toISOString().slice(0, 10) : ''} id="date" isValid={!isValid.title}/>
 			</div>
 			<div className={styles['form-row']}>
 				<label htmlFor="tag" className={styles['form-label']}>
-					<img src='./folder.svg' alt='Иконка папки' />
+					<img src='/folder.svg' alt='Иконка папки'/>
 					<span>Метки</span>
 				</label>
 				<Input type='text' onChange={onChange} id="tag" value={values.tag} name='tag' />
