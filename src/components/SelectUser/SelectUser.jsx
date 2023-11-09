@@ -8,7 +8,7 @@ function SelectUser() {
 	const changeUser = (e) => {
 		setUserId(Number(e.target.value));
 	};
-	
+
 	return (
 		<select className={styles['select']} name="user" id="user" value={userId} onChange={changeUser}>
 			<option value="1">Антон</option>
