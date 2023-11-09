@@ -25,7 +25,7 @@ function App() {
 	console.log('App');
 
 	const addItem = item => {
-		if (item.id) {
+		if (!item.id) {
 			setItems([...mapItems(items), {
 				...item,
 				date: new Date(item.date),
@@ -42,6 +42,7 @@ function App() {
 			})]);
 		}
 	};
+
 
 	const deleteItem = (id) => {
 		setItems([...items.filter(i => i.id !== id)]);
