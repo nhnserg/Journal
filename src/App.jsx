@@ -10,7 +10,7 @@ import { UserContextProvider } from './context/user.context';
 import { useState } from 'react';
 
 function mapItems(items) {
-	if (!items) {
+	if (!items || !Array.isArray(items)) {
 		return [];
 	}
 	return items.map(i => ({
@@ -25,7 +25,7 @@ function App() {
 	console.log('App');
 
 	const addItem = item => {
-		if (!item.id) {
+		if (item.id) {
 			setItems([...mapItems(items), {
 				...item,
 				date: new Date(item.date),
