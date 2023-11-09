@@ -13,7 +13,7 @@ function JournalList({ items, setItem }) {
 			return -1;
 		}
 	};
-	
+
 	const filteredItems = useMemo(() => items
 		.filter(el => el.userId === userId)
 		.sort(sortItems), [items, userId]);
@@ -21,13 +21,13 @@ function JournalList({ items, setItem }) {
 	if (items.length === 0) {
 		return <p>Записей пока нет, добавьте первую</p>;
 	}
-	
 
-	return	<>
+
+	return <>
 		{filteredItems
 			.map(el => (
 				<CardButton key={el.id} onClick={() => setItem(el)}>
-					<JournalItem 
+					<JournalItem
 						title={el.title}
 						post={el.post}
 						date={el.date}
