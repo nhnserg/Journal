@@ -8,7 +8,7 @@ const Input = forwardRef(function Input({ isValid, appearence = 'text', classNam
 			[styles['invalid']]: isValid,
 			[styles['input-title']]: appearence == 'title',
 			[styles['input']]: appearence == 'text'
-		})} {...props}/>
+		})} {...props} />
 	);
 });
 
