@@ -28,7 +28,7 @@ function App() {
 		if (!item.id) {
 			setItems([...mapItems(items), {
 				...item,
-				date: new Date(item.date),
+				date: new Date(item.date)
 
 			}]);
 		} else {
