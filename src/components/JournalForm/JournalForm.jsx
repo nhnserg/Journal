@@ -93,7 +93,7 @@ function JournalForm({ onSubmit, data, onDelete }) {
 			</div>
 			<div className={styles['form-row']}>
 				<label htmlFor="tag" className={styles['form-label']}>
-					<img src='./favn.svg' alt='Иконка папки' />
+					<img src='./doc.svg' alt='Иконка папки' />
 					<span>Tags</span>
 				</label>
 				<Input type='text' onChange={onChange} id="tag" value={values.tag} name='tag' />
