@@ -33,7 +33,7 @@ function App() {
 			}]);
 		} else {
 			setItems([...mapItems(items).map(i => {
-				if (i.id === item.id) {
+				if (item.length > 0) {
 
 					return {
 						...item
