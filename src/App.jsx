@@ -16,6 +16,10 @@ function App() {
 	console.log('App');
 
 	const addItem = item => {
+		const mapItems = items => {
+			return items ? items.map(i => ({ ...i, date: new Date(i.date) })) : [];
+		};
+
 		const mappedItems = mapItems(items);
 
 		if (!item.id) {
@@ -24,9 +28,6 @@ function App() {
 		} else {
 			setItems([...mappedItems.map(i => (i.id === item.id ? { ...item } : i))]);
 		}
-	};
-	const mapItems = items => {
-		return items ? items.map(i => ({ ...i, date: new Date(i.date) })) : [];
 	};
 
 	const deleteItem = (id) => {
