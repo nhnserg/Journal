@@ -19,7 +19,7 @@ function JournalList({ items, setItem }) {
 		.sort(sortItems), [items, userId]);
 
 	if (items.length === 0) {
-		return <p>Записей пока нет, добавьте первую</p>;
+		return <p>There are no entries yet, add the first one</p>;
 	}
 
 
