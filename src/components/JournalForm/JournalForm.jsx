@@ -87,21 +87,21 @@ function JournalForm({ onSubmit, data, onDelete }) {
 			<div className={styles['form-row']}>
 				<label htmlFor="date" className={styles['form-label']}>
 					<img src='./calendar.svg' alt='Иконка календаря' />
-					<span>Дата</span>
+					<span>Data</span>
 				</label>
 				<Input type='date' ref={dateRef} onChange={onChange} name='date' value={values.date ? new Date(values.date).toISOString().slice(0, 10) : ''} id="date" isValid={!isValid.title} />
 			</div>
 			<div className={styles['form-row']}>
 				<label htmlFor="tag" className={styles['form-label']}>
 					<img src='./favn.svg' alt='Иконка папки' />
-					<span>Метки</span>
+					<span>Tags</span>
 				</label>
 				<Input type='text' onChange={onChange} id="tag" value={values.tag} name='tag' />
 			</div>
 			<textarea ref={postRef} name="post" id="" onChange={onChange} value={values.post} cols="30" rows="10" className={cn(styles['input'], {
 				[styles['invalid']]: !isValid.post
 			})}></textarea>
-			<Button>Сохранить</Button>
+			<Button>Save</Button>
 		</form>
 	);
 }
