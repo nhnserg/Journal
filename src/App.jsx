@@ -9,9 +9,7 @@ import { useLocalStorage } from './hooks/use-localstorage.hook';
 import { UserContextProvidev } from './context/user.context';
 import { useState } from 'react';
 
-function mapItems(items) {
-	return items ? items.map(i => ({ ...i, date: new Date(i.date) })) : [];
-}
+
 function App() {
 	const [items, setItems] = useLocalStorage('data');
 	const [selectedItem, setSelectedItem] = useState(null);
@@ -27,7 +25,9 @@ function App() {
 			setItems([...mappedItems.map(i => (i.id === item.id ? { ...item } : i))]);
 		}
 	};
-
+	const mapItems = items => {
+		return items ? items.map(i => ({ ...i, date: new Date(i.date) })) : [];
+	};
 
 	const deleteItem = (id) => {
 		setItems([...items.filter(i => i.id !== id)]);
