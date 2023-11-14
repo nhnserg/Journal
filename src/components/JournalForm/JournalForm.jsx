@@ -81,7 +81,7 @@ function JournalForm({ onSubmit, data, onDelete }) {
 			<div className={styles['form-row']}>
 				<Input appearence="title" type='text' placeholder='Title:' ref={titleRef} onChange={onChange} value={values.title} name='title' isValid={!isValid.title} />
 				{data?.id && <button className={styles['delete']} type="button" onClick={deleteJournalItem}>
-					<img src="/archive.svg" alt="Кнопка удалить" />
+					<img src="./archive.svg" alt="Кнопка удалить" />
 				</button>}
 			</div>
 			<div className={styles['form-row']}>
