@@ -79,7 +79,7 @@ function JournalForm({ onSubmit, data, onDelete }) {
 	return (
 		<form className={styles['journal-form']} onSubmit={addJournalItem}>
 			<div className={styles['form-row']}>
-				<Input appearence="title" type='text' ref={titleRef} onChange={onChange} value={values.title} name='title' isValid={!isValid.title} />
+				<Input appearence="title" type='text' placeholder='Title:' ref={titleRef} onChange={onChange} value={values.title} name='title' isValid={!isValid.title} />
 				{data?.id && <button className={styles['delete']} type="button" onClick={deleteJournalItem}>
 					<img src="/archive.svg" alt="Кнопка удалить" />
 				</button>}
@@ -98,7 +98,7 @@ function JournalForm({ onSubmit, data, onDelete }) {
 				</label>
 				<Input type='text' onChange={onChange} id="tag" value={values.tag} name='tag' />
 			</div>
-			<textarea ref={postRef} name="post" id="" onChange={onChange} value={values.post} cols="30" rows="10" className={cn(styles['input'], {
+			<textarea ref={postRef} name="post" id="" placeholder='Text of memories:' onChange={onChange} value={values.post} cols="30" rows="10" className={cn(styles['input'], {
 				[styles['invalid']]: !isValid.post
 			})}></textarea>
 			<Button>Save</Button>
